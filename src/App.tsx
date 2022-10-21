@@ -2,38 +2,58 @@ import React, {useState} from 'react';
 import './App.css';
 import Number from "./Number/Number";
 
-
 function App() {
-
+  const massNumbers: number[] = [];
   const printNumbers = () => {
 
-    const massNumbers = [];
-    for (let i = 1; i <= 5; i++) {
+    do {
       const randomNumber = Math.floor(Math.random() * (36 - 5 + 1)) + 5;
-      massNumbers.push(randomNumber);
-    }
+      if (massNumbers[0] === undefined) {
+        massNumbers.push(randomNumber);
+      } else if (!massNumbers.includes(randomNumber)) {
+        massNumbers.push(randomNumber);
+      }
+
+    } while (massNumbers.length < 4)
+
+    massNumbers.sort((a, b)=> {
+      return a - b;
+    });
+
     return massNumbers
   }
+  console.log(massNumbers);
 
   const [number, setNumber] = useState([
-    {number:0}
+    {number: 0},
+    {number: 0},
+    {number: 0},
+    {number: 0},
+    {number: 0},
   ]);
 
-  const changeNumber = ()=>{
+  const changeNumber = () => {
     setNumber([
-      {number: printNumbers()[0]}
+      {number: printNumbers()[0]},
+      {number: printNumbers()[1]},
+      {number: printNumbers()[2]},
+      {number: printNumbers()[3]},
+      {number: printNumbers()[4]},
     ]);
   };
-
-  console.log(printNumbers());
 
   return (
     <div className="App">
       <div className="box">
-        <button onClick={changeNumber}>Get numbers</button>
-        <Number number={number[0].number}></Number>
+        <button onClick={changeNumber} className="btn">Get numbers</button>
+        <div className="ball-box">
+          <Number number={number[0].number}></Number>
+          <Number number={number[1].number}></Number>
+          <Number number={number[2].number}></Number>
+          <Number number={number[3].number}></Number>
+          <Number number={number[4].number}></Number>
+        </div>
       </div>
-
     </div>
   );
 }

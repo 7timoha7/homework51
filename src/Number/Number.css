@@ -1,9 +1,12 @@
 .number {
-    width: 20px;
-    height: 20px;
-    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    font-size: 25px;
+    font-weight: bold;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-right: 15px;
+    background: linear-gradient(135deg, rgb(255, 255, 255), rgb(99, 99, 99));;
 }
